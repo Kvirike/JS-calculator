@@ -6,19 +6,20 @@ function App() {
   const[answer, setAnswer] = useState(0)
 
   const display = (symbol) => {
-    setExpression((prev) => prev + symbol);
-    if(expression[expression.length-1] == "="){
-      if(/[1-9.]/.test(symbol)){
-        setExpression(symbol)
-      }else{
-        setExpression(answer + symbol)
-      }
-    }
-  };
+      setExpression((prev) => prev + symbol);
   
+      if(expression[expression.length-1] == "="){
+        if(/[1-9.]/.test(symbol)){
+          setExpression(symbol)
+        }else{
+          setExpression(answer + symbol)
+        }
+      }
+  };
+
   const calculate = () =>{
-    setAnswer(eval(expression))
-    setExpression((prev) => prev + "=");
+      setAnswer(eval(expression));
+      setExpression((prev) => prev + "=");
   }
 
   const allClear = () => {
@@ -26,7 +27,7 @@ function App() {
     setAnswer(0);
   };
   const clear = () => {
-    setExpression(prev => prev.split("").slice(0, prev.lenght-1).join(""))
+    setExpression(prev => prev.split("").slice(0, prev.length-1).join(""))
     setAnswer(0)
   };
 
@@ -52,7 +53,7 @@ function App() {
         <div onClick={() => display("1")} className='padButton one dark-gray'>1</div>
         <div onClick={() => display("2")} className='padButton two dark-gray'>2</div>
         <div onClick={() => display("3")} className='padButton three dark-gray'>3</div>
-        <div onClick={() => calculate()} className='padButton equal blue'>=</div>
+        <div onClick={() => calculate()} className='padButton equal blue' id='equals'>=</div>
         <div onClick={() => display("0")} className='padButton zero dark-gray'>0</div>
         <div onClick={() => display(".")} className='padButton dot dark-gray'>.</div>
       </div>
